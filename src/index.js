@@ -14,7 +14,6 @@ exports.modules = http
     switch (url) {
       case `/rickandmorty/character/${id}`: {
         const char = data.filter((char) => {
-            console.log("este es char ",char);
             return char.id === id;
           });       
         res.writeHead(200, { "contentType": "application/json" });
