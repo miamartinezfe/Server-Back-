@@ -1,7 +1,6 @@
 const http = require("http");
-const fs = require("fs");
 const PORT = 3001;
-const data = require ("./utils/data");
+const {getCharById} = require("./controllers/getCharById");
 
 exports.modules = http
   .createServer((req, res) => {
@@ -13,18 +12,13 @@ exports.modules = http
     }
     switch (url) {
       case `/rickandmorty/character/${id}`: {
-        const char = data.filter((char) => {
-            return char.id === id;
-          });       
-        res.writeHead(200, { "contentType": "application/json" });
-        res.end(JSON.stringify(char[0]));
+        getCharById(res,id);
         return;
       }
 
       default:
         res.writeHead(404, { contentType: "text/plain" });
-        res.end("No existe la url");
-        return;
+        return res.end("No existe la url");
     }
   })
   .listen(PORT, "localhost");
