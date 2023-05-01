@@ -1,8 +1,10 @@
-const users = require('../utils/users');
+const { User } = require("../dataBase/DB_connection");
 
-const login = (email,pass) => {
-    const user = users.find((user)=> email===user.email && pass===user.password)
-    return !!user;
-}
-     
+const login = async (email, password) => {
+  const user = await User.findAll({
+    where: { email, password },
+  });
+  return user;
+};
+
 module.exports = login;
