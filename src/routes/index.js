@@ -4,12 +4,22 @@ const login = require("../controllers/login");
 const postUser = require("../controllers/postUser");
 const postFav = require("../controllers/postFav");
 const deleteFav = require("../controllers/deleteFav");
+const getChars = require("../controllers/getChars");
 const router = Router();
 
 router.get("/character/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const newChar = await getCharById(id);
+    res.status(200).json(newChar);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/character", async (req, res) => {
+  try {
+    const chars = await getChars();
     res.status(200).json(newChar);
   } catch (error) {
     res.status(500).json({ error: error.message });
