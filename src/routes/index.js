@@ -20,7 +20,7 @@ router.get("/character/:id", async (req, res) => {
 router.get("/character", async (req, res) => {
   try {
     const chars = await getChars();
-    res.status(200).json(newChar);
+    res.status(200).json(chars);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
