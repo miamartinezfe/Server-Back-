@@ -1,6 +1,6 @@
 const server = require("./src/server");
 const { conn } = require('./src/dataBase/DB_connection');
-const port = process.env.PORT || 3001;
+const port = process.env.PORT ;
 
 server.listen(port, () => {
   console.log(`runing on port ${port}`);
